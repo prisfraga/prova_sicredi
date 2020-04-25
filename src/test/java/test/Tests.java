@@ -3,6 +3,7 @@ package test;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -13,132 +14,88 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class Tests {
 	
-	// Configurações
+	// ConfiguraÃ§Ãµes
 	private WebDriver driver;
-    private int timeout;
-    
-    // Cabeçalhos
-    private By hdrAddCustomerHeader = By.xpath("//div[contains(text(), 'A') and @class='floatL l5']");
-    private By hdrCustomersHeader = By.xpath("//div[contains(text(), 'Customers') and @class='floatL l5']");
-    private By hdrDeleteModalHeader = By.xpath("//div[contains(@class, 'delete-multiple-confirmation modal')]//h5[text()='Delete']");
-    
-    // Botões e Links
-    private By btnAdd = By .xpath("//a[contains(text()[2], 'Add Customer') and contains(@class, 'btn btn-default')]");
-    private By btnSave = By.xpath("//button[@id='form-button-save']");
-    private By btnSaveAndGo = By.xpath("//button[@id='save-and-go-back-button']");
- 	private By btnClearSearch = By.xpath("//i[contains(@class, 'fa fa-times el el-remove clear-search')]");	
- 	private By btnDelete = By.xpath("//a[contains(@class, 'btn btn-outline-dark delete-selected-button')]"); 	
- 	private By btnConfirmDelete = By.xpath("//button[contains(@class, 'btn btn-danger delete-multiple-confirmation-button')]");
- 	
-    // Combos
-    private By cmbSelectVersion = By.xpath("//select[@id='switch-version-select']");
-    
-    // Caixa de seleção
-    private By chkItem = By.xpath("//input[contains(@class, 'select-row')]");
-
-    // Campos
-    private By txtName = By.xpath("//input[@id='field-customerName']");
-    private By txtLastName = By.xpath("//input[@id='field-contactLastName']");
-    private By txtContactFirstName = By.xpath("//input[@id='field-contactFirstName']");
-    private By txtPhone = By.xpath("//input[@id='field-phone']");
-    private By txtAddressLine1 = By.xpath("//input[@id='field-addressLine1']");
-    private By txtAddressLine2 = By.xpath("//input[@id='field-addressLine2']");
-    private By txtCity = By.xpath("//input[@id='field-city']");
-    private By txtState = By.xpath("//input[@id='field-state']");
-    private By txtPostalCode = By.xpath("//input[@id='field-postalCode']");
-    private By txtCountry = By.xpath("//input[@id='field-country']");
-    private By lblSelectFromEmployer = By.xpath("//span[text()='Select from Employeer']");
-    private By txtFromEmployeer = By.xpath("//div[@class='chosen-search']/input");
-    private By txtCreditLimit = By.xpath("//input[@id='field-creditLimit']");
- 	private By txtSearch = By.xpath("//input[@name='customerName']");
+	private int timeout;
+	// CabeÃ§alhos
+	private By hdrAddCustomerHeader = By.xpath("//div[contains(text(), 'A') and @class='floatL l5']");
+	private By hdrCustomersHeader = By.xpath("//div[contains(text(), 'Customers') and @class='floatL l5']");
+	private By hdrDeleteModalHeader = By.xpath("//div[contains(@class, 'delete-multiple-confirmation modal')]//h5[text()='Delete']");
+	
+	// BotÃµes e Links
+	private By btnAdd = By .xpath("//a[contains(text()[2], 'Add Customer') and contains(@class, 'btn btn-default')]");
+	private By btnSave = By.xpath("//button[@id='form-button-save']");
+	private By btnSaveAndGo = By.xpath("//button[@id='save-and-go-back-button']");
+	private By btnClearSearch = By.xpath("//i[contains(@class, 'fa fa-times el el-remove clear-search')]");	
+	private By btnDelete = By.xpath("//a[contains(@class, 'btn btn-outline-dark delete-selected-button')]"); 	
+	private By btnConfirmDelete = By.xpath("//button[contains(@class, 'btn btn-danger delete-multiple-confirmation-button')]");
+	
+	// Combos
+	private By cmbSelectVersion = By.xpath("//select[@id='switch-version-select']");
+	
+	// Caixa de seleÃ§Ã£o
+	private By chkItem = By.xpath("//input[contains(@class, 'select-row')]");
+	
+	// Campos
+	private By txtName = By.xpath("//input[@id='field-customerName']");
+	private By txtLastName = By.xpath("//input[@id='field-contactLastName']");
+	private By txtContactFirstName = By.xpath("//input[@id='field-contactFirstName']");
+	private By txtPhone = By.xpath("//input[@id='field-phone']");
+	private By txtAddressLine1 = By.xpath("//input[@id='field-addressLine1']");
+	private By txtAddressLine2 = By.xpath("//input[@id='field-addressLine2']");
+	private By txtCity = By.xpath("//input[@id='field-city']");
+	private By txtState = By.xpath("//input[@id='field-state']");
+	private By txtPostalCode = By.xpath("//input[@id='field-postalCode']");
+	private By txtCountry = By.xpath("//input[@id='field-country']");
+	private By lblSelectFromEmployer = By.xpath("//span[text()='Select from Employeer']");
+	private By txtFromEmployeer = By.xpath("//div[@class='chosen-search']/input");
+	private By txtCreditLimit = By.xpath("//input[@id='field-creditLimit']");
+	private By txtSearch = By.xpath("//input[@name='customerName']");
 	
 	// Mensagens
- 	private By lblSuccessMessage = By.xpath("//div[@id='report-success']/p");
-    private By lblAlertMessage = By.cssSelector(".alert > span:nth-child(4)");
- 	private By lblDeleteConfirm = By.xpath("//span[@data-growl='message']/p");
-    private By lblDelete = By.xpath("//div[contains(@class, 'delete-multiple-confirmation modal')]//p[@class='alert-delete-multiple-one']");
-  
+	private By lblSuccessMessage = By.xpath("//div[@id='report-success']/p");
+	private By lblAlertMessage = By.cssSelector(".alert > span:nth-child(4)");
+	private By lblDeleteConfirm = By.xpath("//span[@data-growl='message']/p");
+	private By lblDelete = By.xpath("//div[contains(@class, 'delete-multiple-confirmation modal')]//p[@class='alert-delete-multiple-one']");
     
-    @Before
-    public void setUp() throws Exception {
-    	System.setProperty("webdriver.chrome.driver", "C:\\chromedriver.exe");
-    	driver = new ChromeDriver();
-        driver.get("https://www.grocerycrud.com/demo/bootstrap_theme");
-        timeout = 60;
-    }
+	@Before
+	public void setUp() throws Exception {
+		System.setProperty("webdriver.chrome.driver", "C:\\chromedriver.exe");
+		driver = new ChromeDriver();
+		driver.get("https://www.grocerycrud.com/demo/bootstrap_theme");
+		timeout = 60;
+	}
 
-    /*
-    	Observação
-		O script deve executar no browser Google Chrome
-    	1. Acesse a página https://www.grocerycrud.com/demo/bootstrap_theme
-    	2. Mude o valor da combo Select version para "Bootstrap V4 Theme"
-    	3. Clique no botão Add Customer
-    	4. Preencha os campos do formulário com as seguintes informações:
-    	- Name: Teste Sicredi
-    	- Last name: Teste
-    	- ContactFirstName: seu nome
-    	- Phone: 51 9999-9999
-    	- AddressLine1: Av Assis Brasil, 3970
-    	- AddressLine2: Torre D
-    	- City: Porto Alegre
-    	- State: RS
-    	- PostalCode: 91000-000
-    	- Country: Brasil
-    	- from Employeer: Fixter
-    	- CreditLimit: 200
-    	5. Clique no botão Save
-    	6. Validar a mensagem "Your data has been successfully stored into the database."
-    	através de uma asserção
-    	7. Feche o browser web
-    */
-    @Test
-    public void Test1() throws Exception {
-        this.SelectVersion();
-        
-        driver.findElement(btnAdd).click();       
+	@Test
+	public void Test1() throws Exception {
+		this.SelectVersion();
+		
+		driver.findElement(btnAdd).click();       
+		
+		this.WebDriverWaitElement(hdrAddCustomerHeader);
+		
+		this.FillData();
+		
+		driver.findElement(btnSave).click();
+		
+		this.ValidateInsert(lblSuccessMessage);
+	}
 
-        this.WebDriverWaitElement(hdrAddCustomerHeader);
-        
-     	this.FillData();
-        
-        driver.findElement(btnSave).click();
-        
-        this.ValidateInsert(lblSuccessMessage);
-    }
+	@Test
+	public void Test2() throws Exception {
+		this.SelectVersion();
+    
+		driver.findElement(btnAdd).click();
+    
+		this.WebDriverWaitElement(hdrAddCustomerHeader);
+   
+		this.FillData();
+ 	
+ 		driver.findElement(btnSaveAndGo).click();
 
-    /*
-     	Observação
-		O script deve executar no browser Google Chrome
-		Pré-condição
-		Execute todos os passos do Desafio 1
-		Passos
-		1. Clique no link Go back to list
-		2. Clique no ícone da lupa (pesquisa) e digite o conteúdo do Name (Teste Sicredi)
-		3. Clicar no checkbox abaixo da palavra Actions
-		4. Clicar no botão Delete
-		5. Validar o texto "Are you sure that you want to delete this 1 item?" através de uma
-		asserção para a popup que será apresentada
-		6. Clicar no botão Delete da popup
-		7. Aparecerá uma mensagem dentro de um box verde na parte superior direito da tela.
-		Adicione uma asserção na mensagem "Your data has been successfully deleted from
-		the database."
-		8. Feche o driver web
-     */
-    @Test
-    public void Test2() throws Exception {
-        this.SelectVersion();
-        
-        driver.findElement(btnAdd).click();
-        
-        this.WebDriverWaitElement(hdrAddCustomerHeader);
-       
-     	this.FillData();
-     	
-        driver.findElement(btnSaveAndGo).click();
-
-     	this.ValidateInsert(lblAlertMessage);
-     	
-     	this.SearchItem("Teste Sicredi");
+ 		this.ValidateInsert(lblAlertMessage);
+ 	
+ 		this.SearchItem("Teste Sicredi");
 		
 		this.DeleteItem();
 		
@@ -147,74 +104,73 @@ public class Tests {
 		driver.findElement(btnConfirmDelete).click();
 				
 		this.ValidatedDelete();
-    }
+	}
 
 	@After
-    public void tearDown() throws Exception {
-        driver.close();
-    }
+	public void tearDown() throws Exception {
+		driver.close();
+	}
     
-	// Aguarda o elemento estar acessível e visível na tela
+	// Aguarda o elemento estar acessÃ­vel e visÃ­vel na tela
 	public void WebDriverWaitElement (By element) {
 		new WebDriverWait(driver, timeout).until(ExpectedConditions.presenceOfElementLocated(element));
-   		new WebDriverWait(driver, timeout).until(ExpectedConditions.visibilityOfElementLocated(element));		
+		new WebDriverWait(driver, timeout).until(ExpectedConditions.visibilityOfElementLocated(element));		
 	}
 	
-    // Seleciona Versão
-    public void SelectVersion() {
-       driver.findElement(cmbSelectVersion).click();       
-       new Select(driver.findElement(cmbSelectVersion)).selectByVisibleText("Bootstrap V4 Theme");       
-    }
+	// Seleciona VersÃ£o
+	public void SelectVersion() {
+		driver.findElement(cmbSelectVersion).click();       
+		new Select(driver.findElement(cmbSelectVersion)).selectByVisibleText("Bootstrap V4 Theme");       
+	}
    
-    // Preenche Dados
-    public void FillData(){
-    	driver.findElement(txtName).sendKeys("Teste Sicredi");
-        driver.findElement(txtLastName).sendKeys("Teste");
-        driver.findElement(txtContactFirstName).sendKeys("Priscila Fraga");
-        driver.findElement(txtPhone).sendKeys("51 9999-9999");
-        driver.findElement(txtAddressLine1).sendKeys("Av Assis Brasil,3970");
-        driver.findElement(txtAddressLine2).sendKeys("Torre D");
-        driver.findElement(txtCity).sendKeys("Porto Alegre");
-        driver.findElement(txtState).sendKeys("RS");
-        driver.findElement(txtPostalCode).sendKeys("91000-000");
-        driver.findElement(txtCountry).sendKeys("Brasil");
-        
-    	driver.findElement(txtCountry).sendKeys(Keys.TAB);
-    	    	
-    	driver.findElement(lblSelectFromEmployer).click();
-
-    	this.WebDriverWaitElement(txtFromEmployeer);
-    			
- 		driver.findElement(txtFromEmployeer).sendKeys("Fixter"); 		
-		driver.findElement(txtFromEmployeer).sendKeys(Keys.TAB);
-
-        driver.findElement(txtCreditLimit).sendKeys("200");        
-    }
-    
-    // Busca Item
-    public void SearchItem(String item) {
-    	this.WebDriverWaitElement(hdrCustomersHeader);
-
-		driver.findElement(txtSearch).sendKeys(item);
-
-		driver.findElement(txtSearch).sendKeys(Keys.ENTER);
-
-		this.WebDriverWaitElement(btnClearSearch);
-    }
-
-    // Deleta Ttem
-    public void DeleteItem() {
-    	driver.findElement(chkItem).click();
+	// Preenche Dados
+	public void FillData(){
+		driver.findElement(txtName).sendKeys("Teste Sicredi");
+		driver.findElement(txtLastName).sendKeys("Teste");
+		driver.findElement(txtContactFirstName).sendKeys("Priscila Fraga");
+		driver.findElement(txtPhone).sendKeys("51 9999-9999");
+		driver.findElement(txtAddressLine1).sendKeys("Av Assis Brasil,3970");
+		driver.findElement(txtAddressLine2).sendKeys("Torre D");
+		driver.findElement(txtCity).sendKeys("Porto Alegre");
+		driver.findElement(txtState).sendKeys("RS");
+		driver.findElement(txtPostalCode).sendKeys("91000-000");
+		driver.findElement(txtCountry).sendKeys("Brasil");
 		
-    	this.WebDriverWaitElement(btnDelete);
-	
+		driver.findElement(txtCountry).sendKeys(Keys.TAB);
+		    	
+		driver.findElement(lblSelectFromEmployer).click();
+		
+		this.WebDriverWaitElement(txtFromEmployeer);
+				
+		driver.findElement(txtFromEmployeer).sendKeys("Fixter"); 		
+		driver.findElement(txtFromEmployeer).sendKeys(Keys.TAB);
+		
+		driver.findElement(txtCreditLimit).sendKeys("200");        
+	}
+    
+	// Busca Item
+	public void SearchItem(String item) {
+		this.WebDriverWaitElement(hdrCustomersHeader);
+		
+		driver.findElement(txtSearch).sendKeys(item);
+		
+		driver.findElement(txtSearch).sendKeys(Keys.ENTER);
+		
+		this.WebDriverWaitElement(btnClearSearch);
+	}
+
+	// Deleta Ttem
+	public void DeleteItem() {
+		driver.findElement(chkItem).click();
+		
+		this.WebDriverWaitElement(btnDelete);
+		
 		driver.findElement(btnDelete).click();		
 	}
-
-    // Validação de Cadastro
-    public void ValidateInsert(By element) {
-    	
-		// Define mensagem de validação
+	
+	// Valida de Cadastro
+	public void ValidateInsert(By element) {		
+		// Define mensagem de validaÃ§Ã£o
 		String message = "Your data has been successfully stored into the database.".trim().toUpperCase();
 		
 		this.WebDriverWaitElement(element);
@@ -224,29 +180,29 @@ public class Tests {
 	}
     
     
-    // Validação de Delete Popup
-    public void ValidateDeletePopup() {
+	// Valida a exclusÃ£o do Popup
+	public void ValidateDeletePopup() {
 		String message;
-
-		// Define mensagem de validação
+	
+		// Define mensagem de validaÃ§Ã£o
 		message = "Are you sure that you want to delete this 1 item?".trim().toUpperCase();
-
+	
 		this.WebDriverWaitElement(hdrDeleteModalHeader);
-
+	
 		// Valida a mensagem
 		assert (driver.findElement(lblDelete).getText().trim().toUpperCase().equals(message));
 	}
-
 	
-	// Validação de Delete
-    private void ValidatedDelete() {
-    	String message;
-
-		// Define mensagem de validação
+	
+	// Valida a exclusÃ£o
+	private void ValidatedDelete() {
+		String message;
+	
+		// Define mensagem de validaÃ§Ã£o
 		message = "Your data has been successfully deleted from the database.".trim().toUpperCase();
-
+	
 		this.WebDriverWaitElement(lblDeleteConfirm);
-
+	
 		// Valida a mensagem
 		assert (driver.findElement(lblDeleteConfirm).getText().trim().toUpperCase().equals(message));
 	}
