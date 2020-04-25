@@ -202,7 +202,7 @@ public class Tests {
 		message = "Your data has been successfully deleted from the database.".trim().toUpperCase();
 	
 		this.WebDriverWaitElement(lblDeleteConfirm);
-	
+
 		// Valida a mensagem
 		assert (driver.findElement(lblDeleteConfirm).getText().trim().toUpperCase().equals(message));
 	}
